@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+
+{% block titulo %}
+<title>Posteos</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+{% for post in posteos %}
+<br>
+
+<div class="card mb-3" style="max-width: 1080px;">
+    <div class="row g-0">
+        <div class="col-md-2">
+            <img src="{{ post.imagen.url }}" class="img-fluid rounded-start" alt="nohay">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.titulo }}</h5>
+                <p class="card-text">{{ post.cuerpo|truncatechars:30 }} <a
+                        href="{% url 'posts:post_detail' post.pk %}">Seguir leyendo..</a></p>
+                <p class="card-text"><small class="text-body-secondary">{{ post.fecha_creacion}}
+                    </small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock contenido %}

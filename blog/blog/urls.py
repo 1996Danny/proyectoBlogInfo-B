@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# import staticos/media (importamos para poder visualizar las imagenes en nuestra plantilla)
+from django.conf.urls.static import static
+from django.conf import settings
+
 # Import views
 from . import views
 
@@ -31,4 +35,4 @@ urlpatterns = [
     # Urls de la aplicacion posts
     path("posts/", include("apps.posts.urls")),
     # urls de otra app
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
