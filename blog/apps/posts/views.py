@@ -2,7 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 
 # importar la clase Post del models (BD)
-from .models import Post
+from .models import Post, Categoria
 
 
 # Create your views here.
@@ -15,8 +15,20 @@ def post(request):
 
 
 def post_realizado(request):
-    posteos = Post.objects.all()  # selec * from Post
-    return render(request, "posts/post.html", {"posteos": posteos})
+    # posteos = Post.objects.all()  # selec * from Post
+    # categorias = Categoria.objects.all()
+    # print(categorias)
+    # print(posteos)
+    id_categoria = request.GET.get("id", None)
+    if id_categoria:
+        posteos = Post.objects.filter(categoria_post=id_categoria)
+    else:
+        posteos = Post.objects.all()  # una lista
+
+    categorias = Categoria.objects.all()
+    ctx = zip(posteos, categorias)
+
+    return render(request, "posts/post.html", {"ctx": ctx, "posteos": posteos})
 
 
 def post_detail(request, post_id):
