@@ -1,8 +1,8 @@
 # import get_objetc
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # importar la clase Post del models (BD)
-from .models import Post, Categoria
+from .models import Post, Categoria, Comentario
 
 
 # Create your views here.
@@ -40,3 +40,14 @@ def post_detail(request, post_id):
 
 # def categorias_post(request):
 #     return render(request, "posts/categorias.html")
+
+
+def comentar_posteo(request):
+    comentario = request.POST.get("comentario", None)
+    usuario = request.user
+    post = request.POST.get("id_post", None)
+    posteo = Post.objects.get(id=post)
+    setear_comentario = Comentario.objects.create(
+        usuario=usuario, post=posteo, texto=comentario
+    )
+    return redirect("posts:post_detail", post_id=post)

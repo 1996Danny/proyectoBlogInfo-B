@@ -13,5 +13,18 @@
 <br>
 <p>{{post.cuerpo}}</p>
 
+<form action="{% url 'posts:comentar' %}" method="POST">
+    {% csrf_token %}
+    <textarea name="comentario" id="" cols="30" rows="10"></textarea>
+    <input type="text" name="id_post" value="{{ post.id }}" hidden="">
+    <input type="submit" value="comentar">
+</form>
+<div>
+    {%for comentario in post.comentarios_realizados%}
+    <p>{{ comentario.fecha_comentacion }}</p>
+    <p>{{ comentario.usuario }} comentó</p>
+    <p>{{ comentario.texto }}</p>
+    {% endfor %}
+</div>
 
 {% endblock contenido %}

@@ -14,16 +14,18 @@
                 <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">About</a></li>
             </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                    aria-label="Search">
-            </form>
-
             <div class="text-end">
+                {% if user.is_authenticated %}
+                Bienvenido {{ user.username }}
+                <button type="button" class="btn btn-outline-light me-2"><a href="{% url 'logout' %}"
+                        class="nav-link px-2 text-white">Cerrar sesion</a></button>
                 <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                {% else %}
+                <button type="button" class="btn btn-outline-light me-2"><a href="{% url 'login' %}"
+                        class="nav-link px-2 text-white">Iniciar sesion</a></button>
+                <button type="button" class="btn btn-warning"><a href="{% url 'usuarios:registro' %}"
+                        class="nav-link px-2 text-white">Registro</a></button>
+                {% endif %}
             </div>
         </div>
     </div>
