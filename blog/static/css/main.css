@@ -1,4 +1,31 @@
 body {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.846);
     color: white;
+}
+
+img {
+    max-width: 600px;
+
+}
+
+.comentarios {
+    margin: auto;
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
+
+.texto {
+    margin-left: 100px;
+}
+
+.usuario {
+    font-weight: bold;
+    color: blue;
+}
+
+.fecha {
+    color: slategrey;
+    font-size: small;
 }

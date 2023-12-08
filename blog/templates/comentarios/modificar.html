@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+{% block titulo %}
+<title>Eliminar comentario</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<form method="POST">
+    {% csrf_token %}
+    <p>Escribe su nuevo comentario</p>
+    {{ form }}
+    <button type="submit"> Confimar </button>
+</form>
+
+{% endblock contenido %}
