@@ -1,2 +1,3 @@
 blog/media
 blog/db.sqlite3
+*.sqlite3
