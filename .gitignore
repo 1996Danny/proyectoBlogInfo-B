@@ -1,1 +1,2 @@
-.\blog\media\
+blog/media/
+blog/db.sqlite3
