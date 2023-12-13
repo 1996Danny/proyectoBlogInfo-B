@@ -1,2 +1,2 @@
-blog/media/*
-blog/*.db
+blog/media/posts
+db.sqlite3
