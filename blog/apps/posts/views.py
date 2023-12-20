@@ -27,15 +27,32 @@ def post_realizado(request):
     # print(categorias)
     # print(posteos)
     id_categoria = request.GET.get("id", None)
+    antiguedad = request.GET.get("orden", None)
+    alfabetico = request.GET.get("orden", None)
+    ctx = {}
+
     if id_categoria:
         posteos = Post.objects.filter(categoria_post=id_categoria)
     else:
-        posteos = Post.objects.all()  # una lista
+        if antiguedad == "asc":
+            posteos = Post.objects.all().order_by("fecha_creacion")
+        elif alfabetico == "a":
+            posteos = Post.objects.all().order_by("titulo")
+        elif alfabetico == "z":
+            posteos = Post.objects.all().order_by("-titulo")
+        else:
+            posteos = Post.objects.all().order_by("-fecha_creacion")
+
+        # posteos = Post.objects.all()  # una lista
 
     categorias = Categoria.objects.all()
-    ctx = zip(posteos, categorias)
-
-    return render(request, "posts/post.html", {"ctx": ctx, "posteos": posteos})
+    ctx["posteos"] = posteos
+    ctx["categorias"] = categorias
+    return render(
+        request,
+        "posts/post.html",
+        {"ctx": ctx, "posteos": posteos, "categorias": categorias},
+    )
 
 
 def post_detail(request, post_id):

@@ -13,11 +13,14 @@
     </button>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="{% url 'posts:post_realizado' %}">Todas</a></li>
-        {% for posteo, categoria in ctx %}
-        <li><a class="dropdown-item" href="?id={{posteo.pk}}"> {{categoria.nombre}}</a></li>
+        {% for categoria in categorias %}
+        <li><a class="dropdown-item" href="?id={{categoria.pk}}"> {{categoria.nombre}}</a></li>
         {% endfor %}
-
     </ul>
+    <a class="btn btn-secondary" href="?orden=asc">ASC</a>
+    <a class="btn btn-secondary" href="?orden=desc">DESC</a>
+    <a class="btn btn-secondary" href="?orden=a">A-Z</a>
+    <a class="btn btn-secondary" href="?orden=z">Z-A</a>
 </div>
 <!-- FIN DROPDOWN -->
 
@@ -26,7 +29,7 @@
 {% for post in posteos %}
 <br>
 
-<div class="card mb-3" style="max-width: 1080px;">
+<div class="card text-bg-secondary mb-3--bs-warning-border-subtle" style="max-width: 1080px;">
     <div class="row g-0">
         <div class="col-md-2">
             <img src="{{ post.imagen.url }}" class="img-fluid rounded-start" alt="nohay">

@@ -20,7 +20,7 @@ urlpatterns = [
     # path("nombre/", views.nombre, name="nombre"),
     # #############################################################
     # Urls de la aplicacion posts
-    path("posts/", include("apps.posts.urls")),
+    path("", include("apps.posts.urls")),
     # urls de otra app
     # urls para el login y logout
     path(

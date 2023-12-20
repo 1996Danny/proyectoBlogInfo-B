@@ -5,9 +5,9 @@
 {% endblock titulo %}
 
 {% block contenido %}
-<form class="mb-3" method="POST">
+<form class="registro" method="POST">
     {% csrf_token %}
-    <center>{{ form.as_p }}</center>
+    {{ form_1.as_p }}
     <button type="submit" id="submit"> Registrar</button>
 </form>
 

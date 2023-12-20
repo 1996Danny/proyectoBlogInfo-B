@@ -21,5 +21,5 @@ def registro(request):
     else:
         formulario = FormularioRegistro()
 
-    contexto["form"] = formulario
+    contexto["form_1"] = formulario
     return render(request, "usuarios/registro.html", contexto)
