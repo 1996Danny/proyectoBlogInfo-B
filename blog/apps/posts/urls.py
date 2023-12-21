@@ -25,4 +25,6 @@ urlpatterns = [
         views.Modificar_Comentario.as_view(),
         name="modificar_comentario",
     ),
+    # url para crear posts
+    path("cargar/", views.Cargar_Post.as_view(), name="cargar_post"),
 ]

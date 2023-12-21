@@ -1,4 +1,6 @@
 # import get_objetc
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 
@@ -6,10 +8,10 @@ from django.urls import reverse_lazy
 from .models import Post, Categoria, Comentario
 
 # importamos deleteview , updateview
-from django.views.generic import DeleteView, UpdateView
+from django.views.generic import DeleteView, UpdateView, CreateView
 
 # importamos el nuevo formulario que definimos en forms.py
-from .forms import Formulario_Modificacion
+from .forms import Formulario_Modificacion, Form_Post
 
 
 # Create your views here.
@@ -88,3 +90,15 @@ class Modificar_Comentario(UpdateView):
     form_class = Formulario_Modificacion
     template_name = "comentarios/modificar.html"
     success_url = reverse_lazy("posts:post_realizado")
+
+
+class Cargar_Post(CreateView):
+    model = Post
+    template_name = "posts/cargar_post.html"
+    form_class = Form_Post
+    success_url = reverse_lazy("posts:post_realizado")
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.usuario = self.request.user
+        return super(Cargar_Post, self).form_valid(form)

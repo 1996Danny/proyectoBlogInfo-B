@@ -12,8 +12,8 @@
                 <li><a href="{% url 'posts:post_realizado' %}" class="nav-link px-2 text-white">Posteos</a></li>
                 {% if user.is_authenticated and user.is_staff %}
                 <li><a href="{% url 'admin:index' %}" class="nav-link px-2 text-white">Admin</a></li>
+                <li><a href="{% url 'posts:cargar_post' %}" class="nav-link px-2 text-white">Cargar Post</a></li>
                 {% endif%}
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">About</a></li>
             </ul>
             <div class="text-end">
